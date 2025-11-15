@@ -4,6 +4,8 @@ import expense.calculator.application.error.ErrorResponse;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -48,6 +50,15 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(MissingServletRequestParameterException.class)
   public ResponseEntity<?> handleMissingParameter() {
     String errorMessage = "UUID is required but missing in the request.";
+
+    ErrorResponse errorResponse = new ErrorResponse("Bad Request", List.of(errorMessage));
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  public ResponseEntity<?> handleEntityNotFound() {
+    String errorMessage = "Expense not found";
 
     ErrorResponse errorResponse = new ErrorResponse("Bad Request", List.of(errorMessage));
 
