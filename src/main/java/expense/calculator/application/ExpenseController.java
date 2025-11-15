@@ -29,13 +29,14 @@ public class ExpenseController {
                 expenseRequest.getAmount())));
   }
 
+  @PreAuthorize("hasRole('ADMIN')")
   @GetMapping
   public ResponseEntity<ExpenseResponse> getExpense(@RequestParam String uuid) {
 
     return ResponseEntity.ok(toResponse(expense.getExpense(uuid)));
   }
 
-  @PreAuthorize("hasRole('ROLE_USER')")
+  @PreAuthorize("hasRole('USER')")
   @DeleteMapping
   public ResponseEntity<String> deleteExpense(@RequestParam String uuid) {
     return ResponseEntity.ok(expense.deleteExpense(uuid));

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,15 +27,21 @@ public class SecurityConfig {
   }
 
   @Bean
-  public DaoAuthenticationProvider authProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailsService);
-    authProvider.setPasswordEncoder(passwordEncoder());
-    return authProvider;
+  public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
+    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    provider.setUserDetailsService(userDetailsService);
+    provider.setPasswordEncoder(passwordEncoder());
+    return provider;
   }
 
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authProvider, CustomAccessDeniedHandler deniedHandler)
+      throws Exception {
+
+    http.authenticationProvider(authProvider);
+
+    http.exceptionHandling().accessDeniedHandler(deniedHandler);
+
     http.csrf()
         .disable()
         .authorizeHttpRequests(
