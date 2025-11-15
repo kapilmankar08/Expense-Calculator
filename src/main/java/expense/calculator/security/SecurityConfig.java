@@ -36,13 +36,13 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf()
-        .disable() // for testing, enable later
+        .disable()
         .authorizeHttpRequests(
             auth ->
                 auth.requestMatchers("/api/expenses/**").authenticated().anyRequest().permitAll())
         .formLogin()
         .and()
-        .httpBasic(); // optional for REST clients
+        .httpBasic();
     return http.build();
   }
 }

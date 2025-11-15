@@ -5,6 +5,7 @@ import static expense.calculator.application.ExpenseMapper.toResponse;
 import expense.calculator.domain.incoming.ExpenseUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,6 +35,7 @@ public class ExpenseController {
     return ResponseEntity.ok(toResponse(expense.getExpense(uuid)));
   }
 
+  @PreAuthorize("hasRole('ROLE_USER')")
   @DeleteMapping
   public ResponseEntity<String> deleteExpense(@RequestParam String uuid) {
     return ResponseEntity.ok(expense.deleteExpense(uuid));
