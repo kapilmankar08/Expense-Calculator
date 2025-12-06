@@ -18,7 +18,7 @@ Feature: Test Expense User Case
       | dateAdded   | now      |
 
   Scenario: User retrieves an expense(GET)
-    When getting the expense by providing the UUID 09fe2b32-ab35-4c70-975e-d466f55b3814
+    When getting the expense by providing the UUID "09fe2b32-ab35-4c70-975e-d466f55b3814"
     Then expect the response contain the following details:
       | attribute   | value      |
       | expenseName | Dominoes   |
