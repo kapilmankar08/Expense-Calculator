@@ -34,7 +34,7 @@ public class ExpenseSteps {
     this.expense = expenseUseCase.createExpense(category, expenseName, Integer.parseInt(amt));
   }
 
-  @When("getting the expense by providing the UUID {word}")
+  @When("getting the expense by providing the UUID {string}")
   public void whenGettingTheExpense(String uuid) {
     this.expense = expenseUseCase.getExpense(uuid);
   }
