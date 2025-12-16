@@ -1,0 +1,12 @@
+2025-12-14 22:52:40.286559+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_ROLES" not found; SQL statement:
+
+    alter table user_roles 
+       drop 
+       foreign key FKh8ciramu9cc9q3qcqiv [42102-232]
+2025-12-14 22:52:40.296026+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_ROLES" not found; SQL statement:
+
+    alter table user_roles 
+       drop 
+       foreign key FKhfh9dx7w3ubf1co1vde [42102-232]
