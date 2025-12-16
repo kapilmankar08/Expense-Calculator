@@ -27,7 +27,7 @@ public class ExpenseSteps {
     this.expenseUseCase = expenseUseCase;
   }
 
-  @Given("there exists a expense with the following details")
+  @Given("there exists an expense with the following details")
   public void givenThereExistsAnExpense(Map<String, String> row) {
     String category = row.get("category");
     String expenseName = row.get("expenseName");

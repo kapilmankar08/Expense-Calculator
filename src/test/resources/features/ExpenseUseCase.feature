@@ -18,7 +18,7 @@ Feature: Test Expense User Case
       | dateAdded   | now      |
 
   Scenario: User retrieves an expense(GET)
-    Given there exists a expense with the following details
+    Given there exists an expense with the following details
       | expenseName | Taco Bell |
       | category    | Food      |
       | amount      | 1000      |
@@ -32,7 +32,7 @@ Feature: Test Expense User Case
       | dateAdded   | now       |
 
   Scenario: User updates an expense (PATCH)
-    Given there exists a expense with the following details
+    Given there exists an expense with the following details
       | expenseName | Pizza Hut |
       | category    | Food      |
       | amount      | 1000      |
@@ -48,8 +48,8 @@ Feature: Test Expense User Case
       | amount      | 1500  |
       | dateAdded   | now   |
 
-  Scenario: User delets an expense (DELETE)
-    Given there exists a expense with the following details
+  Scenario: User deletes an expense (DELETE)
+    Given there exists an expense with the following details
       | expenseName | Pizza Hut |
       | category    | Food      |
       | amount      | 1000      |
